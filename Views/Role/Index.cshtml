@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+@{
+    ViewBag.Title = "Manage Roles";
+}
+
+<h2>Manage Roles</h2>
+
+<hr/>
+
+<table class="table table-hover">
+
+    <tr class="table-primary">
+        <th>Role Name</th>
+        <th>Edit Name</th>
+        <th>Remove</th>
+        <th>Users</th>
+    </tr>
+
+    @foreach (var role in Model)
+    {
+<tr>
+    <td>@role.Name</td>
+    <td>@Html.ActionLink("Edit", "Edit", new { roleName = @role.Name })</td>
+    <td><span onclick="return confirm('Delete this role?')"><a href="/Role/Delete?RoleName=@role.Name" style="color:red;">Delete</a></span></td>
+    <td><a href="/Role/GetUsers">Get Users For This Role</a></td>
+</tr>
+    }
+</table>
+<hr/>
+ <p>@Html.ActionLink("Add New Role", "Create", "Role") | @Html.ActionLink("Assign User To Role", "RegisterRole", "Account")</p>
+       

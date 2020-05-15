@@ -1,0 +1,29 @@
+﻿@using Co_nnecto.Models
+@model  RegisterViewModel
+   
+ @{ 
+        ViewBag.Title = "Register Role";
+    }
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("RegisterRole", "Account", FormMethod.Post))
+{
+
+@Html.ValidationSummary("")
+<div>
+    @Html.Label("Select Role")
+    <div>
+        @Html.DropDownList("UserName")
+    </div>
+</div>
+<hr/>
+<div>
+    @Html.Label("Select User")
+    <div>
+        @Html.DropDownList("Name")
+    </div>
+</div>
+<hr/>
+<input type="submit" class="btn btn-success" value="Assign User To Role" />
+}
