@@ -41,9 +41,9 @@ namespace Co_nnecto.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Delete(string RoleName)
+        public ActionResult Delete(string roleName)
         {
-            var thisRole = context.Roles.Where(r => r.Name.Equals(RoleName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+            var thisRole = context.Roles.Where(r => r.Name.Equals(roleName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
             context.Roles.Remove(thisRole);
             context.SaveChanges();
             return RedirectToAction("Index");
@@ -74,9 +74,11 @@ namespace Co_nnecto.Controllers
 
         public ActionResult GetUsers(string roleName)
         {
-            var users = context.Users.Where(u => u.Roles.Any(r => r.RoleId == roleName)).ToList();//????
-            ViewBag.Users = users;
+            
+            var roleId = context.Roles.Where(x => x.Name.Equals(roleName)).Select(y => y.Id).FirstOrDefault();
+            var users = context.Users.Where(x => x.Roles.Any(y => y.RoleId.Equals(roleId))).ToList();
             ViewBag.Role = roleName;
+            ViewBag.Users = users;
             return View(users);
         }
 
