@@ -22,7 +22,7 @@
     <td>@role.Name</td>
     <td>@Html.ActionLink("Edit", "Edit", new { roleName = @role.Name })</td>
     <td><span onclick="return confirm('Delete this role?')"><a href="/Role/Delete?RoleName=@role.Name" style="color:red;">Delete</a></span></td>
-    <td><a href="/Role/GetUsers">Get Users For This Role</a></td>
+    <td><a href="/Role/GetUsers?roleName=@role.Name">Get Users For This Role</a></td>
 </tr>
     }
 </table>
