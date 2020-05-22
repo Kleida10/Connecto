@@ -175,7 +175,7 @@ namespace Co_nnecto.Controllers
             return View(model);
         }
 
-        public ActionResult RegisterRole()
+        public ActionResult ManageUsers()
         {
             ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name");
             ViewBag.UserName = new SelectList(context.Users.ToList(), "UserName", "UserName");
@@ -183,7 +183,7 @@ namespace Co_nnecto.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> RegisterRole(RegisterViewModel model, ApplicationUser user)
+        public async Task<ActionResult> AddUserToRole(RegisterViewModel model, ApplicationUser user)
         {
             var userId = context.Users.Where(i => i.UserName == user.UserName).Select(s => s.Id);
             string updateId = "";
@@ -192,9 +192,24 @@ namespace Co_nnecto.Controllers
                 updateId = i.ToString();
             }
             await UserManager.AddToRoleAsync(updateId, model.Name);
-            return RedirectToAction("GetUsers", "Role");
-        }
 
+            return RedirectToAction("Index", "Role");
+        }
+        [HttpPost]
+        public async Task<ActionResult> DeleteUserFromRole(RegisterViewModel model, ApplicationUser user)
+        {
+            var userId = context.Users.Where(i => i.UserName == user.UserName).Select(s => s.Id);
+            string updateId = "";
+            foreach (var i in userId)
+            {
+                updateId = i.ToString();
+            }
+            await UserManager.RemoveFromRoleAsync(updateId, model.Name);
+            var list = context.Roles.OrderBy(r => r.Name).ToList().Select(x => new SelectListItem { Value = x.Name.ToString(), Text = x.Name }).ToList();
+            ViewBag.Roles = list;
+            
+            return RedirectToAction("Index", "Role");
+        }
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]

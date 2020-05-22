@@ -425,6 +425,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="LICENSE.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -458,7 +459,7 @@
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\Role\Edit.cshtml" />
-    <Content Include="Views\Account\RegisterRole.cshtml" />
+    <Content Include="Views\Account\ManageUsers.cshtml" />
     <Content Include="Views\Role\GetUsers.cshtml" />
     <Content Include="Views\Home\FAQs.cshtml" />
     <Content Include="Views\Role\TeachersView.cshtml" />

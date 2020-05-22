@@ -1,0 +1,52 @@
+﻿@using Co_nnecto.Models
+@model  RegisterViewModel
+
+@{
+    ViewBag.Title = "Manage Users";
+}
+
+<h2>Add A User To A Role</h2>
+
+@using (Html.BeginForm("AddUserToRole", "Account", FormMethod.Post))
+{
+
+    @Html.ValidationSummary("")
+    <div>
+        @Html.Label("Select Role", null, new { @class = "form-control-label" })
+        <div class="form-group">
+            @Html.DropDownList("Name", null, new { @class = "custom-select" })
+        </div>
+    </div>
+    <hr />
+    <div>
+        @Html.Label("Select User", null, new { @class = "form-control-label" })
+        <div class="form-group">
+            @Html.DropDownList("UserName", null, new { @class = "custom-select" })
+        </div>
+    </div>
+    <hr />
+    <input type="submit" class="btn btn-success" value="Assign User To Role" />
+}
+<hr />
+<h2>Remove A User From A Role</h2>
+<hr />
+@using (Html.BeginForm("DeleteUserFromRole", "Account"))
+{
+    @Html.ValidationSummary(true)
+    <div>
+        @Html.Label("Username", null, new { @class = "form-control-label" })
+        <div class="form-group">
+            @Html.DropDownList("UserName", null, new { @class = "custom-select" })
+        </div>
+    </div>
+    <hr />
+    <div>
+        @Html.Label("Role Name", null, new { @class = "form-control-label" })
+        <div class="form-group">
+            @Html.DropDownList("Name", null, new { @class = "custom-select" })
+        </div>
+    </div>
+    <hr />
+    <input type="submit" class="btn btn-success" value="Remove" />
+
+}

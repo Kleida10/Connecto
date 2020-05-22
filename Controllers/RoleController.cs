@@ -81,7 +81,6 @@ namespace Co_nnecto.Controllers
             ViewBag.Users = users;
             return View(users);
         }
-
         public ActionResult TeachersView()
         {
             return View();
