@@ -31,5 +31,7 @@ namespace Co_nnecto.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Co_nnecto.Models.Student> Students { get; set; }
     }
 }
