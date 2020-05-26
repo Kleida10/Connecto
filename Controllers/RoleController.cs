@@ -12,7 +12,7 @@ using System.Web.Security;
 
 namespace Co_nnecto.Controllers
 {
-    public class RoleController : Controller
+    public class RoleController : ApplicationBaseController
     {
         ApplicationDbContext context;
 

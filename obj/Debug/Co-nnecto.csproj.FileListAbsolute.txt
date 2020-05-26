@@ -173,3 +173,5 @@ C:\Users\kleida\Desktop\Co-nnecto\bin\pt-BR\Microsoft.Data.SqlClient.resources.d
 C:\Users\kleida\Desktop\Co-nnecto\bin\ru\Microsoft.Data.SqlClient.resources.dll
 C:\Users\kleida\Desktop\Co-nnecto\bin\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 C:\Users\kleida\Desktop\Co-nnecto\bin\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.FullName.resources
+C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co-nnecto.csproj.GenerateResource.cache
