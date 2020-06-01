@@ -8,7 +8,7 @@ namespace Co_nnecto.Controllers
 {
     public class HomeController : ApplicationBaseController
     {
-       
+
         public ActionResult Index()
         {
             return View();
@@ -27,6 +27,13 @@ namespace Co_nnecto.Controllers
             ViewBag.Message = "A list of our most asked questions.";
             return View();
         }
-    }
 
+        public ActionResult Chat()
+
+        {
+            ViewBag.Message = "Your chat page";
+            return View();
+        }
+
+    }
 }

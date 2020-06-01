@@ -10,7 +10,6 @@ namespace Co_nnecto.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "Co_nnecto.Models.ApplicationDbContext";
         }
 
         protected override void Seed(Co_nnecto.Models.ApplicationDbContext context)

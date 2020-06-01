@@ -21,7 +21,7 @@ namespace Co_nnecto.Controllers
             context = new ApplicationDbContext();
         }
         // GET: Role
-        [Authorize(Roles="Admin")]
+        //[Authorize(Roles="Admin")]
         public ActionResult Index()
         {
             var Roles = context.Roles.ToList();

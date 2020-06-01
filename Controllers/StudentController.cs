@@ -10,14 +10,14 @@ using Co_nnecto.Models;
 
 namespace Co_nnecto.Controllers
 {
-    public class StudentController : Controller
+    public class StudentController : ApplicationBaseController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext context = new ApplicationDbContext();
 
         // GET: Student
         public ActionResult Index()
         {
-            return View(db.Students.ToList());
+            return View(context.Students.ToList());
         }
 
         // GET: Student/Details/5
@@ -27,7 +27,7 @@ namespace Co_nnecto.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
+            Student student = context.Students.Find(id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -42,16 +42,14 @@ namespace Co_nnecto.Controllers
         }
 
         // POST: Student/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,FirstName,MiddleName,LastName")] Student student)
         {
             if (ModelState.IsValid)
             {
-                db.Students.Add(student);
-                db.SaveChanges();
+                context.Students.Add(student);
+                context.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +63,7 @@ namespace Co_nnecto.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
+            Student student = context.Students.Find(id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -74,16 +72,14 @@ namespace Co_nnecto.Controllers
         }
 
         // POST: Student/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,FirstName,MiddleName,LastName")] Student student)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(student).State = EntityState.Modified;
-                db.SaveChanges();
+                context.Entry(student).State = EntityState.Modified;
+                context.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(student);
@@ -96,7 +92,7 @@ namespace Co_nnecto.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
+            Student student = context.Students.Find(id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -109,17 +105,59 @@ namespace Co_nnecto.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Student student = db.Students.Find(id);
-            db.Students.Remove(student);
-            db.SaveChanges();
+            Student student = context.Students.Find(id);
+            context.Students.Remove(student);
+            context.SaveChanges();
             return RedirectToAction("Index");
         }
 
+        public ActionResult AddParents()
+        {
+            var parentId = context.Roles.Where(x => x.Name.Equals("Parent")).Select(y => y.Id).FirstOrDefault();
+            var parents = context.Users.Where(x => x.Roles.Any(y => y.RoleId.Equals(parentId))).ToList();
+            ViewBag.Users = new SelectList(parents, "UserName", "UserName");
+            return View();
+           
+        }
+
+        [HttpPost]
+        public ActionResult AddParents(int? id, ApplicationUser user)
+        {
+            Student student = context.Students.Find(id);
+
+            //var parents = context.Students.Select(s => s.Parents).ToList();
+            var studentParent = context.Users.Where(s => s.UserName == user.UserName).FirstOrDefault();
+            //var studentParent = userId.
+             student.Parents.Add(studentParent);           
+            var parents = student.Parents.ToList();//??????
+
+            context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult AddTeachers()
+        {
+            var teacherRole = context.Roles.Where(x => x.Name.Equals("Teacher")).Select(y => y.Id).FirstOrDefault();
+            var teachers = context.Users.Where(x => x.Roles.Any(y => y.RoleId.Equals(teacherRole))).ToList();
+            ViewBag.Users =new SelectList(teachers, "UserName", "UserName");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddTeachers(Student student, ApplicationUser user)
+        {
+            //var teachers = student.Teachers.ToList();//????
+            //var userId = context.Users.Where(i => i.UserName == user.UserName).FirstOrDefault();
+            //teachers.Add(userId);
+
+            return Redirect("Index");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                context.Dispose();
             }
             base.Dispose(disposing);
         }
