@@ -392,6 +392,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -399,10 +400,15 @@
     <Compile Include="Migrations\202005261735433_FullName.Designer.cs">
       <DependentUpon>202005261735433_FullName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006011755182_UpdateDb.cs" />
+    <Compile Include="Migrations\202006011755182_UpdateDb.Designer.cs">
+      <DependentUpon>202006011755182_UpdateDb.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -469,6 +475,11 @@
     <Content Include="Views\Role\GetUsers.cshtml" />
     <Content Include="Views\Home\FAQs.cshtml" />
     <Content Include="Views\Role\TeachersView.cshtml" />
+    <Content Include="Views\Student\Create.cshtml" />
+    <Content Include="Views\Student\Delete.cshtml" />
+    <Content Include="Views\Student\Details.cshtml" />
+    <Content Include="Views\Student\Edit.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -490,6 +501,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202005261735433_FullName.resx">
       <DependentUpon>202005261735433_FullName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006011755182_UpdateDb.resx">
+      <DependentUpon>202006011755182_UpdateDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
