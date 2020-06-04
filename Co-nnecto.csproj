@@ -474,7 +474,7 @@
     <Content Include="Views\Account\ManageUsers.cshtml" />
     <Content Include="Views\Role\GetUsers.cshtml" />
     <Content Include="Views\Home\FAQs.cshtml" />
-    <Content Include="Views\Role\TeachersView.cshtml" />
+    <Content Include="Views\Role\ParentsView.cshtml" />
     <Content Include="Views\Student\Create.cshtml" />
     <Content Include="Views\Student\Delete.cshtml" />
     <Content Include="Views\Student\Details.cshtml" />

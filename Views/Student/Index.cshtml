@@ -38,11 +38,15 @@
             </td>
            
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
-                @Html.ActionLink("Add Parents", "AddParents", new { id = item.ID }) |
-                @Html.ActionLink("Add Teachers", "AddTeachers", new { id = item.ID })
+
+                @*@if (User.IsInRole("Admin"))
+                {*@
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
+                    @Html.ActionLink("Add Parents", "AddParents", new { id = item.ID }) |
+                    @Html.ActionLink("Add Teachers", "AddTeachers", new { id = item.ID })
+                @*}*@
             </td>
         </tr>
     }
