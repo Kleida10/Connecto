@@ -130,10 +130,10 @@ namespace Co_nnecto.Controllers
         {
             Student student = db.Students.Find(id);
             student.Parents = new List<ApplicationUser>();
-            var parents = student.Parents.ToList();
+            //var parents = student.Parents.ToList();
             var parent = db.Users.Where(u => u.UserName == user.UserName).FirstOrDefault();
             
-            parents.Add(parent);
+            student.Parents.Add(parent);
 
             db.SaveChanges();
 

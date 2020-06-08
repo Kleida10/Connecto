@@ -32,6 +32,9 @@ namespace Co_nnecto.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<Co_nnecto.Models.Student> Students { get; set; }
+        public DbSet <Student> Students { get; set; }
+        public DbSet <Message> Messages { get; set; }
+        public DbSet<Reply> Replies { get; set; }
+
     }
 }

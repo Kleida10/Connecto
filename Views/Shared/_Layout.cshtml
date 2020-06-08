@@ -17,7 +17,7 @@
             <span class="navbar-toggler-icon"></span>
 
         </button>
-        
+
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active"><a class="nav-link" href="/Home">Home</a></li>
@@ -27,6 +27,7 @@
         {*@
                 <li class="nav-item"><a class="nav-link" href="/Role">Manage Roles</a></li>
                 <li class="nav-item"><a class="nav-link" href="/Student/Index">Students</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Chat/Index">Message</a></li>
 
                 @*}*@
                 @*@if (User.IsInRole("Teacher"))
@@ -34,14 +35,14 @@
             <li class="nav-item"><a class="nav-link" href="/Student/Index">Students</a></li>
         }*@
                 @*@if (User.IsInRole("Parent"))
-                {
-                    <li class="nav-item"><a class="nav-link" href="/Role/ParentsView">Teachers</a></li>
-                }*@
+        {
+            <li class="nav-item"><a class="nav-link" href="/Role/ParentsView">Teachers</a></li>
+        }*@
             </ul>
-               
-                @Html.Partial("_LoginPartial")
+
+            @Html.Partial("_LoginPartial")
         </div>
-     </nav>
+    </nav>
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -51,6 +52,7 @@
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/bootbox")
     @RenderSection("scripts", required: false)
 </body>
 </html>
