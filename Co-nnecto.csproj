@@ -404,11 +404,56 @@
     <Compile Include="Migrations\202006011755182_UpdateDb.Designer.cs">
       <DependentUpon>202006011755182_UpdateDb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006081844200_AddViewModel.cs" />
+    <Compile Include="Migrations\202006081844200_AddViewModel.Designer.cs">
+      <DependentUpon>202006081844200_AddViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006081907458_StudentParentModel.cs" />
+    <Compile Include="Migrations\202006081907458_StudentParentModel.Designer.cs">
+      <DependentUpon>202006081907458_StudentParentModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006082039085_NewUpdate.cs" />
+    <Compile Include="Migrations\202006082039085_NewUpdate.Designer.cs">
+      <DependentUpon>202006082039085_NewUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006091600233_AddParents.cs" />
+    <Compile Include="Migrations\202006091600233_AddParents.Designer.cs">
+      <DependentUpon>202006091600233_AddParents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006091647355_Checking.cs" />
+    <Compile Include="Migrations\202006091647355_Checking.Designer.cs">
+      <DependentUpon>202006091647355_Checking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006091932366_RemoveStudentParentClass.cs" />
+    <Compile Include="Migrations\202006091932366_RemoveStudentParentClass.Designer.cs">
+      <DependentUpon>202006091932366_RemoveStudentParentClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006091949583_StudentParentClass.cs" />
+    <Compile Include="Migrations\202006091949583_StudentParentClass.Designer.cs">
+      <DependentUpon>202006091949583_StudentParentClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006092023490_Update.cs" />
+    <Compile Include="Migrations\202006092023490_Update.Designer.cs">
+      <DependentUpon>202006092023490_Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006092036418_Change.cs" />
+    <Compile Include="Migrations\202006092036418_Change.Designer.cs">
+      <DependentUpon>202006092036418_Change.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006101525167_ChangeAgain2.cs" />
+    <Compile Include="Migrations\202006101525167_ChangeAgain2.Designer.cs">
+      <DependentUpon>202006101525167_ChangeAgain2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006101607562_ChangeAgain3.cs" />
+    <Compile Include="Migrations\202006101607562_ChangeAgain3.Designer.cs">
+      <DependentUpon>202006101607562_ChangeAgain3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\StudentParent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -481,6 +526,8 @@
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Student\AddParents.cshtml" />
+    <Content Include="Views\Student\StudentParents.cshtml" />
+    <Content Include="Views\Student\StudentTeachers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -505,6 +552,39 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006011755182_UpdateDb.resx">
       <DependentUpon>202006011755182_UpdateDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006081844200_AddViewModel.resx">
+      <DependentUpon>202006081844200_AddViewModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006081907458_StudentParentModel.resx">
+      <DependentUpon>202006081907458_StudentParentModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006082039085_NewUpdate.resx">
+      <DependentUpon>202006082039085_NewUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006091600233_AddParents.resx">
+      <DependentUpon>202006091600233_AddParents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006091647355_Checking.resx">
+      <DependentUpon>202006091647355_Checking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006091932366_RemoveStudentParentClass.resx">
+      <DependentUpon>202006091932366_RemoveStudentParentClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006091949583_StudentParentClass.resx">
+      <DependentUpon>202006091949583_StudentParentClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006092023490_Update.resx">
+      <DependentUpon>202006092023490_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006092036418_Change.resx">
+      <DependentUpon>202006092036418_Change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006101525167_ChangeAgain2.resx">
+      <DependentUpon>202006101525167_ChangeAgain2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006101607562_ChangeAgain3.resx">
+      <DependentUpon>202006101607562_ChangeAgain3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

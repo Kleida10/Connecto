@@ -176,3 +176,14 @@ C:\Users\kleida\Desktop\Co-nnecto\bin\zh-Hant\Microsoft.Data.SqlClient.resources
 C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.FullName.resources
 C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co-nnecto.csproj.GenerateResource.cache
 C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.UpdateDb.resources
+C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.AddViewModel.resources
+C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.StudentParentModel.resources
+C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.NewUpdate.resources
+C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.AddParents.resources
+C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.Checking.resources
+C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.RemoveStudentParentClass.resources
+C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.StudentParentClass.resources
+C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.Update.resources
+C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.Change.resources
+C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.ChangeAgain2.resources
+C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.ChangeAgain3.resources

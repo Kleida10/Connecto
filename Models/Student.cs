@@ -16,10 +16,12 @@ namespace Co_nnecto.Models
         [DisplayName("Last Name")]
         public string LastName { get; set; }
         public int ID { get; set; }
-        public int ParentsID { get; set; }
-        public List<ApplicationUser> Parents { get; set; }
-        public int TeachersID { get; set; }
-        public List<ApplicationUser> Teachers { get; set; }
+        public ICollection<StudentParent> StudentParents { get; set; }
+
+        //public int ParentsID { get; set; }
+        //public List<ApplicationUser> Parents { get; set; }
+        //public int TeachersID { get; set; }
+        // public List<ApplicationUser> Teachers { get; set; }
 
     }
 }

@@ -79,7 +79,7 @@ namespace Co_nnecto.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,FirstName,MiddleName,LastName,Parents,Teachers")] Student student)
+        public ActionResult Edit([Bind(Include = "ID,FirstName,MiddleName,LastName")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -119,25 +119,46 @@ namespace Co_nnecto.Controllers
         public ActionResult AddParents()
         {
             var parentId = db.Roles.Where(x => x.Name.Equals("Parent")).Select(y => y.Id).FirstOrDefault();
-            var parents = db.Users.Where(x => x.Roles.Any(y => y.RoleId.Equals(parentId))).ToList();
-            ViewBag.Parents = new SelectList(parents, "UserName", "UserName");
+            var parentUsers = db.Users.Where(x => x.Roles.Any(y => y.RoleId.Equals(parentId))).ToList();
+            ViewBag.Parents = new SelectList(parentUsers, "UserName", "UserName");
+
             return View();
 
         }
 
         [HttpPost]
-        public ActionResult AddParents(int? id, ApplicationUser user)
+        public ActionResult AddParents(int id, ApplicationUser user, StudentParent stParent)
         {
             Student student = db.Students.Find(id);
-            student.Parents = new List<ApplicationUser>();
-            var parents = student.Parents.ToList();
-            var parent = db.Users.Where(u => u.UserName == user.UserName).FirstOrDefault();
-            
-            parents.Add(parent);
+            var userId = db.Users.Where(u => u.UserName == user.UserName).Select(s => s.Id).FirstOrDefault();
+            var parent = db.Users.Find(userId);
+            var parents = db.StudentParents.Select(p => p.Parent).ToList();
+            if (!parents.Contains(parent) || parents == null)
+            {
+                // parents.Add(parent);
+                stParent = new StudentParent
+                {
+                    StudentID = id,
+                    ParentID = userId,
+                    Student = student,
+                    Parent = parent
+                };
+                db.StudentParents.Add(stParent);
+                db.SaveChanges();
+                return RedirectToAction("StudentParents");
 
-            db.SaveChanges();
-
+            }
             return RedirectToAction("Index");
+        }
+
+        public ActionResult StudentParents(int? id)
+        {
+            var student = db.StudentParents.Where(s => s.StudentID == id).FirstOrDefault();
+            var parents = db.StudentParents.Where(s => s.StudentID == id).Select(p => p.Parent).ToList();
+
+            ViewBag.Parents = parents;
+            //ViewBag.Title = student.Student.FirstName + " " + student.Student.LastName;
+            return View(parents);
         }
 
         protected override void Dispose(bool disposing)
