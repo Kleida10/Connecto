@@ -127,34 +127,27 @@ namespace Co_nnecto.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddParents(int id, ApplicationUser user, StudentParent stParent)
+        public ActionResult AddParents(int id, ApplicationUser user)
         {
             Student student = db.Students.Find(id);
             var userId = db.Users.Where(u => u.UserName == user.UserName).Select(s => s.Id).FirstOrDefault();
             var parent = db.Users.Find(userId);
-            var parents = db.StudentParents.Select(p => p.Parent).ToList();
+            //var parents = db.Students.Where(s => s.ID == id).Select(p => p.Parents).ToList();
+            var parents = db.Students.Single(s => s.ID == id).Parents.ToList();
             if (!parents.Contains(parent) || parents == null)
             {
-                // parents.Add(parent);
-                stParent = new StudentParent
-                {
-                    StudentID = id,
-                    ParentID = userId,
-                    Student = student,
-                    Parent = parent
-                };
-                db.StudentParents.Add(stParent);
+                parents.Add(parent);
                 db.SaveChanges();
+                
                 return RedirectToAction("StudentParents");
-
             }
             return RedirectToAction("Index");
         }
 
         public ActionResult StudentParents(int? id)
         {
-            var student = db.StudentParents.Where(s => s.StudentID == id).FirstOrDefault();
-            var parents = db.StudentParents.Where(s => s.StudentID == id).Select(p => p.Parent).ToList();
+            Student student = db.Students.Find(id);
+            var parents = student.Parents.ToList();
 
             ViewBag.Parents = parents;
             //ViewBag.Title = student.Student.FirstName + " " + student.Student.LastName;

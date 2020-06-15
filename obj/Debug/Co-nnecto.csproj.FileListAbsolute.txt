@@ -187,3 +187,4 @@ C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.Update.resource
 C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.Change.resources
 C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.ChangeAgain2.resources
 C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.ChangeAgain3.resources
+C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.RemovingSP.resources
