@@ -21,7 +21,7 @@ namespace Co_nnecto.Controllers
             context = new ApplicationDbContext();
         }
         // GET: Role
-        //[Authorize(Roles="Admin")]
+        [Authorize(Roles="Admin")]
         public ActionResult Index()
         {
             var Roles = context.Roles.ToList();
@@ -87,6 +87,14 @@ namespace Co_nnecto.Controllers
             var teachers = context.Users.Where(x => x.Roles.Any(y => y.RoleId.Equals(roleId))).ToList();
             ViewBag.Teachers = teachers;
             return View(teachers);
+        }
+
+        public ActionResult TeachersView()
+        {
+            var roleId = context.Roles.Where(x => x.Name.Equals("Parent")).Select(y => y.Id).FirstOrDefault();
+            var parents = context.Users.Where(x => x.Roles.Any(y => y.RoleId.Equals(roleId))).ToList();
+            ViewBag.Parents = parents;
+            return View(parents);
         }
     }
 }

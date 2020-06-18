@@ -12,6 +12,7 @@ namespace Co_nnecto.Models
         public Student()
         {
             Parents = new HashSet<ApplicationUser>();
+            Teachers = new HashSet<ApplicationUser>();
         }
 
         [DisplayName("First Name")]
@@ -21,7 +22,8 @@ namespace Co_nnecto.Models
         [DisplayName("Last Name")]
         public string LastName { get; set; }
         public int ID { get; set; }
-        //public ICollection<StudentParent> StudentParents { get; set; }
         public ICollection<ApplicationUser> Parents { get; set; }
+        public ICollection<ApplicationUser> Teachers { get; set; }
+
     }
 }

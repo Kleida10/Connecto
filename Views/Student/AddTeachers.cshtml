@@ -1,0 +1,19 @@
+﻿@model List<Co_nnecto.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Add Teachers";
+}
+
+<h2>Add Teachers</h2>
+@using (Html.BeginForm("AddTeachers", "Student", FormMethod.Post))
+{
+
+    @Html.ValidationSummary("")
+    <div>
+        @Html.Label("Add Teacher", null, new { @class = "form-control-label" })
+        <div class="form-group">
+            @Html.DropDownList("Teachers", null, new { @class = "custom-select" })
+        </div>
+    </div>
+    <input type="submit" class="btn btn-success" value="Add Teacher" />
+}

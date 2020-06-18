@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Parents";
+}
+
+<h2>Parents</h2>
+<hr />
+<table class="table table-hover">
+    <tr class="table-primary">
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+    </tr>
+    @foreach (var parent in ViewBag.Parents)
+    {
+        <tr>
+            <td>@parent.FirstName</td>
+            <td>@parent.LastName</td>
+            <td>@parent.UserName</td>
+        </tr>
+    }
+</table>

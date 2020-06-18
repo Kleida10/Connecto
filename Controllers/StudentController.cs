@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -37,6 +38,7 @@ namespace Co_nnecto.Controllers
         }
 
         // GET: Student/Create
+        [Authorize(Roles="Admin")]
         public ActionResult Create()
         {
             return View();
@@ -60,6 +62,7 @@ namespace Co_nnecto.Controllers
         }
 
         // GET: Student/Edit/5
+        [Authorize(Roles="Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -91,6 +94,7 @@ namespace Co_nnecto.Controllers
         }
 
         // GET: Student/Delete/5
+        [Authorize(Roles="Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -115,7 +119,8 @@ namespace Co_nnecto.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        
+        [Authorize(Roles="Admin")]
         public ActionResult AddParents()
         {
             var parentId = db.Roles.Where(x => x.Name.Equals("Parent")).Select(y => y.Id).FirstOrDefault();
@@ -127,31 +132,68 @@ namespace Co_nnecto.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddParents(int id, ApplicationUser user)
+        public ActionResult AddParents(int? id, string parents)
         {
             Student student = db.Students.Find(id);
-            var userId = db.Users.Where(u => u.UserName == user.UserName).Select(s => s.Id).FirstOrDefault();
-            var parent = db.Users.Find(userId);
-            //var parents = db.Students.Where(s => s.ID == id).Select(p => p.Parents).ToList();
-            var parents = db.Students.Single(s => s.ID == id).Parents.ToList();
-            if (!parents.Contains(parent) || parents == null)
+            student.ID = (int)id;
+            var parentId = db.Users.Where(u => u.UserName == parents).Select(p => p.Id).FirstOrDefault();
+            var parent = db.Users.Find(parentId);
+            if (!student.Parents.Contains(parent) || student.Parents == null)
             {
-                parents.Add(parent);
+                student.Parents.Add(parent);
                 db.SaveChanges();
-                
-                return RedirectToAction("StudentParents");
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            return View();
         }
+        [Authorize(Roles="Admin,Teacher")]
 
         public ActionResult StudentParents(int? id)
         {
             Student student = db.Students.Find(id);
-            var parents = student.Parents.ToList();
+            student.ID = (int)id;
+            var stParents = db.Students.Where(s => s.ID == id).SelectMany(p => p.Parents).ToList();
+            ViewBag.StParents = stParents.ToList();
+            ViewBag.Title = student.FirstName + " " + student.LastName;
+            return View(stParents);
+        }
+        
+        [Authorize(Roles="Admin")]
+        public ActionResult AddTeachers()
+        {
+            var teacherId = db.Roles.Where(x => x.Name.Equals("Teacher")).Select(y => y.Id).FirstOrDefault();
+            var teacherUsers = db.Users.Where(x => x.Roles.Any(y => y.RoleId.Equals(teacherId))).ToList();
+            ViewBag.Teachers = new SelectList(teacherUsers, "UserName", "UserName");
 
-            ViewBag.Parents = parents;
-            //ViewBag.Title = student.Student.FirstName + " " + student.Student.LastName;
-            return View(parents);
+            return View();
+
+        }
+
+        [HttpPost]
+        public ActionResult AddTeachers(int? id, string teachers)
+        {
+            Student student = db.Students.Find(id);
+            student.ID = (int)id;
+            var teacherId = db.Users.Where(u => u.UserName == teachers).Select(p => p.Id).FirstOrDefault();
+            var teacher = db.Users.Find(teacherId);
+            if (!student.Teachers.Contains(teacher) || student.Teachers == null)///????
+            {
+                student.Teachers.Add(teacher);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+        
+        [Authorize(Roles="Admin,Parent")]
+        public ActionResult StudentTeachers(int? id)
+        {
+            Student student = db.Students.Find(id);
+            student.ID = (int)id;
+            var stTeachers = db.Students.Where(s => s.ID == id).SelectMany(p => p.Teachers).ToList();
+            ViewBag.StTeachers = stTeachers.ToList();
+            ViewBag.Title = student.FirstName + " " + student.LastName;
+            return View(stTeachers);
         }
 
         protected override void Dispose(bool disposing)

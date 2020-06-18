@@ -452,12 +452,31 @@
     <Compile Include="Migrations\202006151621582_RemovingSP.Designer.cs">
       <DependentUpon>202006151621582_RemovingSP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006151936399_Update4.cs" />
+    <Compile Include="Migrations\202006151936399_Update4.Designer.cs">
+      <DependentUpon>202006151936399_Update4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006151939434_Update5.cs" />
+    <Compile Include="Migrations\202006151939434_Update5.Designer.cs">
+      <DependentUpon>202006151939434_Update5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006151959417_Update7.cs" />
+    <Compile Include="Migrations\202006151959417_Update7.Designer.cs">
+      <DependentUpon>202006151959417_Update7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006172043373_StudentTeacher.cs" />
+    <Compile Include="Migrations\202006172043373_StudentTeacher.Designer.cs">
+      <DependentUpon>202006172043373_StudentTeacher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006181611140_UpdateStudentClass.cs" />
+    <Compile Include="Migrations\202006181611140_UpdateStudentClass.Designer.cs">
+      <DependentUpon>202006181611140_UpdateStudentClass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Student.cs" />
-    <Compile Include="Models\StudentParent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -532,6 +551,8 @@
     <Content Include="Views\Student\AddParents.cshtml" />
     <Content Include="Views\Student\StudentParents.cshtml" />
     <Content Include="Views\Student\StudentTeachers.cshtml" />
+    <Content Include="Views\Student\AddTeachers.cshtml" />
+    <Content Include="Views\Role\TeachersView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -592,6 +613,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006151621582_RemovingSP.resx">
       <DependentUpon>202006151621582_RemovingSP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006151936399_Update4.resx">
+      <DependentUpon>202006151936399_Update4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006151939434_Update5.resx">
+      <DependentUpon>202006151939434_Update5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006151959417_Update7.resx">
+      <DependentUpon>202006151959417_Update7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006172043373_StudentTeacher.resx">
+      <DependentUpon>202006172043373_StudentTeacher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006181611140_UpdateStudentClass.resx">
+      <DependentUpon>202006181611140_UpdateStudentClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

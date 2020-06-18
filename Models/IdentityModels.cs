@@ -17,8 +17,9 @@ namespace Co_nnecto.Models
         }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        //public ICollection<StudentParent> StudentParents { get; set; }
         public ICollection<Student> Students { get; set; }
+        public ICollection<Student> StudentTeachers { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -37,11 +38,11 @@ namespace Co_nnecto.Models
         }
 
         public System.Data.Entity.DbSet<Student> Students { get; set; }
-       // public System.Data.Entity.DbSet<StudentParent> StudentParents { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            
             modelBuilder.Entity<Student>()
                 .HasMany(s => s.Parents)
                 .WithMany(c => c.Students)
@@ -51,7 +52,17 @@ namespace Co_nnecto.Models
                     cs.MapRightKey("ParentID");
                     cs.ToTable("StudentParent");
                 });
+            
 
+            modelBuilder.Entity<Student>()
+                .HasMany(t => t.Teachers)
+                .WithMany(s => s.StudentTeachers)
+                .Map(st =>
+                {
+                    st.MapLeftKey("StudentID");
+                    st.MapRightKey("TeacherID");
+                    st.ToTable("StudentTeacher");
+                });
         }
         public ApplicationDbContext()
            : base("DefaultConnection", throwIfV1Schema: false)
