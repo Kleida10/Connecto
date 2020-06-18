@@ -116,30 +116,7 @@ namespace Co_nnecto.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult AddParents()
-        {
-            var parentId = db.Roles.Where(x => x.Name.Equals("Parent")).Select(y => y.Id).FirstOrDefault();
-            var parents = db.Users.Where(x => x.Roles.Any(y => y.RoleId.Equals(parentId))).ToList();
-            ViewBag.Parents = new SelectList(parents, "UserName", "UserName");
-            return View();
-
-        }
-
-        [HttpPost]
-        public ActionResult AddParents(int? id, ApplicationUser user)
-        {
-            Student student = db.Students.Find(id);
-            student.Parents = new List<ApplicationUser>();
-            //var parents = student.Parents.ToList();
-            var parent = db.Users.Where(u => u.UserName == user.UserName).FirstOrDefault();
-            
-            student.Parents.Add(parent);
-
-            db.SaveChanges();
-
-            return RedirectToAction("Index");
-        }
-
+       
         protected override void Dispose(bool disposing)
         {
             if (disposing)
