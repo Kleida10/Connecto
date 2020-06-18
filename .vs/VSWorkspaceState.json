@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Controllers",
+    "\\Models",
+    "\\Views",
+    "\\Views\\Role",
+    "\\Views\\Shared"
+  ],
+  "SelectedNode": "\\Models\\IdentityModels.cs",
+  "PreviewInSolutionExplorer": false
+}
