@@ -88,5 +88,12 @@ namespace Co_nnecto.Controllers
             ViewBag.Teachers = teachers;
             return View(teachers);
         }
+        public ActionResult TeachersView()
+        {
+            var roleId = context.Roles.Where(x => x.Name.Equals("Parent")).Select(y => y.Id).FirstOrDefault();
+            var parents = context.Users.Where(x => x.Roles.Any(y => y.RoleId.Equals(roleId))).ToList();
+            ViewBag.Parents = parents;
+            return View(parents);
+        }
     }
 }

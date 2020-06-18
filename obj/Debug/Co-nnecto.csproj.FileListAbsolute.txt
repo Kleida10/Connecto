@@ -192,3 +192,4 @@ C:\Users\kleida\Desktop\Co-nnecto\bin\SendGrid.pdb
 C:\Users\kleida\Desktop\Co-nnecto\bin\SendGrid.xml
 C:\Users\kleida\Desktop\Co-nnecto\bin\SendGrid.SmtpApi.xml
 C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.Chat.resources
+C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.update.resources
