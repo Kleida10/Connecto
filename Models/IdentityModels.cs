@@ -38,6 +38,9 @@ namespace Co_nnecto.Models
         }
 
         public System.Data.Entity.DbSet<Student> Students { get; set; }
+        public System.Data.Entity.DbSet<Message> Messages { get; set; }
+        public System.Data.Entity.DbSet<Reply> Replies { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -193,3 +193,13 @@ C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.Update5.resourc
 C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.Update7.resources
 C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.StudentTeacher.resources
 C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.UpdateStudentClass.resources
+C:\Users\kleida\Desktop\Co-nnecto\bin\PagedList.dll
+C:\Users\kleida\Desktop\Co-nnecto\bin\PagedList.Mvc.dll
+C:\Users\kleida\Desktop\Co-nnecto\bin\SendGrid.dll
+C:\Users\kleida\Desktop\Co-nnecto\bin\SendGrid.SmtpApi.dll
+C:\Users\kleida\Desktop\Co-nnecto\bin\PagedList.xml
+C:\Users\kleida\Desktop\Co-nnecto\bin\PagedList.Mvc.xml
+C:\Users\kleida\Desktop\Co-nnecto\bin\SendGrid.pdb
+C:\Users\kleida\Desktop\Co-nnecto\bin\SendGrid.xml
+C:\Users\kleida\Desktop\Co-nnecto\bin\SendGrid.SmtpApi.xml
+C:\Users\kleida\Desktop\Co-nnecto\obj\Debug\Co_nnecto.Migrations.addedChat.resources
