@@ -109,7 +109,6 @@
                                             <table class="table">
                                                 <tr>
                                                     <td>
-
                                                         <div class="form-group">
                                                             <span><b>Message Details: </b></span>
                                                             @foreach (var item in Model.Replies)
@@ -124,35 +123,35 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <div class="form-group">
-                                                        @using (Html.BeginForm("ReplyMessage", "Chat", new { id = "form-reply-message", messageId = @ViewBag.MessageId }, FormMethod.Post))
-                                                        {
-
-                                                            if (!ViewData.ModelState.IsValid)
+                                                    <td>
+                                                        <div class="form-group">
+                                                            @using (Html.BeginForm("ReplyMessage", "Chat", new { id = "form-reply-message", messageId = @ViewBag.MessageId }, FormMethod.Post))
                                                             {
-                                                                <div class="row">
-                                                                    <div class="col-lg-4 col-md-4 col-sm-4"></div>
-                                                                    <div class="col-lg-8 col-md-8 col-sm-8">
-                                                                        @Html.ValidationSummary(true)
+
+                                                                if (!ViewData.ModelState.IsValid)
+                                                                {
+                                                                    <div class="row">
+                                                                        <div class="col-lg-4 col-md-4 col-sm-4"></div>
+                                                                        <div class="col-lg-8 col-md-8 col-sm-8">
+                                                                            @Html.ValidationSummary(true)
+                                                                        </div>
                                                                     </div>
+                                                                }
+                                                                @Html.HiddenFor(model => model.Reply.MessageId);
+                                                                <label class="col-sm-2 ">Reply</label>
+                                                                <div class="col-sm-9">
+                                                                    @Html.TextAreaFor(p => p.Reply.ReplyMessage, new { @rows = 2, @class = "form-control" })
+                                                                    @Html.ValidationMessageFor(model => model.Reply.ReplyMessage)
+
+                                                                </div>
+                                                                <div class="col-sm-1">
+                                                                    <input type="submit" class="btn btn-primary btn-success" value="Reply" id="btn-reply-message">
                                                                 </div>
                                                             }
-                                                            @Html.HiddenFor(model => model.Reply.MessageId);
-                                                            <label class="col-sm-2 ">Reply</label>
-                                                            <div class="col-sm-9">
-                                                                @Html.TextAreaFor(p => p.Reply.ReplyMessage, new { @rows = 2, @class = "form-control" })
-                                                                @Html.ValidationMessageFor(model => model.Reply.ReplyMessage)
-
-                                                            </div>
-                                                            <div class="col-sm-1">
-                                                                <input type="submit" class="btn btn-primary btn-success" value="Reply" id="btn-reply-message">
-                                                            </div>
-                                                        }
-                                                    </div>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             </table>
-
-
                                             <h4>Replies for the Message</h4>
                                             <table class="table">
                                                 @foreach (var item in Model.Replies)

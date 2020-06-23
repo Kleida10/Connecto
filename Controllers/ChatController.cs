@@ -1,26 +1,32 @@
-﻿using Co_nnecto.Models;
-using Co_nnecto.ViewModels;
-using System;
-using System.Linq;
-using System.Web.Mvc;
-using SendGrid.SmtpApi;
-using System.Net;
-using System.Net.Mail;
-using SendGrid;
-using PagedList;
-using SendGrid.Helpers.Mail;
+﻿// <copyright file="ChatController.cs" company="Kleida Haxhaj">
+// Copyright (c) Kleida Haxhaj. All rights reserved.
+// </copyright>
 
 namespace Co_nnecto.Controllers
 {
+    using System;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Mail;
+    using System.Web.Mvc;
+    using Co_nnecto.Models;
+    using Co_nnecto.ViewModels;
+    using PagedList;
+    using SendGrid;
+    using SendGrid.Helpers.Mail;
+    using SendGrid.SmtpApi;
+
     public class ChatController : ApplicationBaseController
     {
         ApplicationDbContext context;
+
+        /// Initializes a new instance of the <see cref="ChatController"/> class.
         public ChatController()
         {
             context = new ApplicationDbContext();
         }
 
-        public ActionResult Index(int? Id, int? page)
+        public ActionResult Index(int? id, int? page)
         {
             int pageSize = 5;
             int pageNumber = page ?? 1;
@@ -34,10 +40,9 @@ namespace Co_nnecto.Controllers
             ViewBag.MessagesInOnePage = vm.Messages;
             ViewBag.PageNumber = pageNumber;
 
-            if (Id != null)
+            if (id != null)
             {
-
-                var replies = context.Replies.Where(x => x.MessageId == Id.Value).OrderByDescending(x => x.ReplyDateTime).ToList();
+                var replies = context.Replies.Where(x => x.MessageId == id.Value).OrderByDescending(x => x.ReplyDateTime).ToList();
                 if (replies != null)
                 {
                     foreach (var rep in replies)
@@ -51,15 +56,13 @@ namespace Co_nnecto.Controllers
                         reply.ReplyFrom = rep.ReplyFrom;
                         vm.Replies.Add(reply);
                     }
-
                 }
                 else
                 {
                     vm.Replies.Add(null);
                 }
 
-
-                ViewBag.MessageId = Id.Value;
+                ViewBag.MessageId = id.Value;
             }
 
             return View(vm);
@@ -76,13 +79,14 @@ namespace Co_nnecto.Controllers
         public ActionResult PostMessage(MessageReplyViewModel vm)
         {
             var username = User.Identity.Name;
-            string fullName = "";
+            string fullName = string.Empty;
             int msgid = 0;
             if (!string.IsNullOrEmpty(username))
             {
                 var user = context.Users.SingleOrDefault(u => u.UserName == username);
                 fullName = string.Concat(new string[] { user.FirstName, " ", user.LastName });
             }
+
             Message messagetoPost = new Message();
             if (vm.Message.Subject != string.Empty && vm.Message.MessageToPost != string.Empty)
             {
@@ -102,21 +106,22 @@ namespace Co_nnecto.Controllers
         [HttpPost]
         public ActionResult ReplyMessage(MessageReplyViewModel vm, int messageId)
         {
-            var username = User.Identity.Name;
-            string fullName = "";
+            var username = this.User.Identity.Name;
+            string fullName = string.Empty;
             if (!string.IsNullOrEmpty(username))
             {
                 var user = context.Users.SingleOrDefault(u => u.UserName == username);
                 fullName = string.Concat(new string[] { user.FirstName, " ", user.LastName });
             }
+
             if (vm.Reply.ReplyMessage != null)
             {
-                Reply _reply = new Reply();
-                _reply.ReplyDateTime = DateTime.Now;
-                _reply.MessageId = messageId;
-                _reply.ReplyFrom = fullName;
-                _reply.ReplyMessage = vm.Reply.ReplyMessage;
-                context.Replies.Add(_reply);
+                Reply reply = new Reply();
+                reply.ReplyDateTime = DateTime.Now;
+                reply.MessageId = messageId;
+                reply.ReplyFrom = fullName;
+                reply.ReplyMessage = vm.Reply.ReplyMessage;
+                context.Replies.Add(reply);
                 context.SaveChanges();
             }
 
@@ -126,7 +131,7 @@ namespace Co_nnecto.Controllers
                         select new
                         {
                             FullName = user.FirstName + " " + user.LastName,
-                            UserEmail = user.Email
+                            UserEmail = user.Email,
                         };
 
             var uEmail = users.Where(x => x.FullName == messageOwner).Select(s => s.UserEmail).FirstOrDefault();
@@ -134,8 +139,6 @@ namespace Co_nnecto.Controllers
             replyMessage.From = new EmailAddress(username);
             replyMessage.Subject = "Reply for your message :" + context.Messages.Where(i => i.Id == messageId).Select(s => s.Subject).FirstOrDefault();
             replyMessage.PlainTextContent = vm.Reply.ReplyMessage;
-
-
             replyMessage.AddTo(uEmail);
             var apiKey = "SG.Q6xPa - GrS - 6P9ksaGM0G7Q.WPjkVCm40fCVMmV7MLNdrcE_EqlAx0_fgezOBTksSp4";
 
@@ -143,28 +146,25 @@ namespace Co_nnecto.Controllers
             client.SendEmailAsync(replyMessage);
 
             return RedirectToAction("Index", "Chat", new { Id = messageId });
-
-
         }
 
         [HttpPost]
         public ActionResult DeleteMessage(int messageId)
         {
-            Message _messageToDelete = context.Messages.Find(messageId);
-            context.Messages.Remove(_messageToDelete);
+            Message messageToDelete = context.Messages.Find(messageId);
+            context.Messages.Remove(messageToDelete);
             context.SaveChanges();
 
             // also delete the replies related to the message
-            var _repliesToDelete = context.Replies.Where(i => i.MessageId == messageId).ToList();
-            if (_repliesToDelete != null)
+            var repliesToDelete = context.Replies.Where(i => i.MessageId == messageId).ToList();
+            if (repliesToDelete != null)
             {
-                foreach (var rep in _repliesToDelete)
+                foreach (var rep in repliesToDelete)
                 {
                     context.Replies.Remove(rep);
                     context.SaveChanges();
                 }
             }
-
 
             return RedirectToAction("Index", "Chat");
         }
